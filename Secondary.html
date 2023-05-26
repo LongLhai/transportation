@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This meta tag is for compatibility with IE -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- This meta tag makes your website look good on all devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secondary</title>
+  <!-- This is the css file for the map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <!-- This is the css file for the template -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <style>
+    /* This is the css for the div that will hold the map */
+    #mapid {
+      height: 800px;
+    }
+  </style>
+  <link rel="stylesheet" href="/css2/style.css">
+</head>
+<header>
+</div>
+<nav>
+<ul>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/map.html">Primary</a></li>
+    <li><a href="/Secondary.html">Secondary</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+                
+</ul>
+</nav>
+<div>
+</header>
+<body>
+  <!-- This is the div that will hold the map and the content -->
+  <div class="w3-row">
+    <div id="mapid" class="w3-half"></div>
+    <div id="content" class="w3-half">
+      <table class="w3-table w3-striped">
+        <tr>
+          <th>ท่าอากาศยาน</th>
+          <th>จังหวัด</th>
+          <th>อันดับ</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Import the leaflet.js library -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <script>
+    // Initialize the map and set its view to our chosen geographical coordinates and a zoom level
+    var map = L.map("mapid").setView([13.736717, 100.523186], 8); 
+
+    // Add the OpenStreetMap layer to the map
+    var osm = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    ).addTo(map);
+    // Add the Google Satellite layer
+    var gsat = L.tileLayer(
+      "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+    );
+    // Add the OpenStreetMap HOT layer
+    var OpenStreetMap_HOT = L.tileLayer(
+      "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+    );
+    // Group all base layers into a single object
+    var baseMaps = {
+      OSM: osm,
+      GoogleSat: gsat,
+      streetmap: OpenStreetMap_HOT,
+    };
+
+    // Define our GeoJSON object with the features (locations)
+    var Thailand = {
+      "type": "FeatureCollection",
+      // The 'features' property of the GeoJSON object is an array of GeoJSON feature objects.
+      "features": [
+        // Here are the locations. You can change these coordinates to place your locations
+        // You can also change the type and level to categorize your locations.
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติกระบี",
+            "type": "กระบี่",
+            "level": 1
+          },
+          "geometry": {
+            "coordinates": [
+            98.98319479528466,
+            8.099301435569599 
+            ],
+            "type": "Point"
+          }
+        },
+        // More locations...
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติขอนแก่น",
+            "type": "ขอนแก่น",
+            "level": 2
+          },
+          "geometry": {
+            "coordinates": [
+            102.78687163776142,
+            16.465267195408437
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานชุมพร",
+            "type": "ชุมพร",
+            "level": 3
+          },
+          "geometry": {
+            "coordinates": [
+            99.35879546648427,
+            10.714493631217895   
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานตาก",
+            "type": "ตาก",
+            "level": 4
+          },
+          "geometry": {
+            "coordinates": [
+            99.25370393661593,
+            16.89820492025916
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติแม่สอด",
+            "type": "ตาก",
+            "level": 5
+          },
+          "geometry": {
+            "coordinates": [
+            98.54550938373586,
+            16.7030170027681
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานตรัง",
+            "type": "ตรัง",
+            "level": 6
+          },
+          "geometry": {
+            "coordinates": [
+            99.61530963745646,
+            7.511483952097239
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานตราด",
+            "type": "ตราด",
+            "level": 7
+          },
+          "geometry": {
+            "coordinates": [
+            102.32438227289006,
+            12.281271232822785  
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนครพนม",
+            "type": "นครพนม",
+            "level": 8
+          },
+          "geometry": {
+            "coordinates": [
+            104.6447273089477,
+            17.389076283498397 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนครราชสีมา",
+            "type": "นครราชสีมา",
+            "level": 9
+          },
+          "geometry": {
+            "coordinates": [
+            102.31153205522408,
+            14.953595044249445
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนครศรีธรรมราช",
+            "type": "นครศรีธรรมราช",
+            "level": 10
+          },
+          "geometry": {
+            "coordinates": [
+            99.93990219550207,
+            8.538477034310766
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": " ท่าอากาศยานนครสวรรค์",
+            "type": "นครสวรรค์",
+            "level": 11
+          },
+          "geometry": {
+            "coordinates": [
+            100.31047886891527,
+            15.257004067547465 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": " ท่าอากาศยานนราธิวาส",
+            "type": "นราธิวาส",
+            "level": 12
+          },
+          "geometry": {
+            "coordinates": [
+            101.74888817961937,
+            6.523256021644859 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานน่าน",
+            "type": "น่าน",
+            "level": 13
+          },
+          "geometry": {
+            "coordinates": [
+            100.78511111237869,
+            18.802786295739345 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานบุรีรัมย์",
+            "type": "บุรีรัมย์",
+            "level": 14
+          },
+          "geometry": {
+            "coordinates": [
+            103.24792469694805,
+            15.228278040471354
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานหัวหิน",
+            "type": "ประจวบคีรีขันธ์",
+            "level": 15
+          },
+          "geometry": {
+            "coordinates": [
+            99.9735808334058,
+            12.820604416322332 , 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานปัตตานี",
+            "type": "ปัตตานี",
+            "level": 16
+          },
+          "geometry": {
+            "coordinates": [
+            101.1921324241834,
+            7.657010786369363 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานพิษณุโลก",
+            "type": "พิษณุโลก",
+            "level": 17
+          },
+          "geometry": {
+            "coordinates": [
+            100.281533441161,
+            16.771676160767928 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานเพชรบูรณ์",
+            "type": "เพชรบูรณ์",
+            "level": 18
+          },
+          "geometry": {
+            "coordinates": [
+            101.18045610131976,
+            16.714846066494413
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานแพร่",
+            "type": "แพร่",
+            "level": 19
+          },
+          "geometry": {
+            "coordinates": [
+            100.16233745284268,
+            18.132021196413838
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานปาย",
+            "type": "ปาย",
+            "level": 20
+          },
+          "geometry": {
+            "coordinates": [ 
+            98.419694648303,
+            19.453251501893938
+           
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานแม่ฮ่องสอน",
+            "type": "แม่ฮ่องสอน",
+            "level": 21
+          },
+          "geometry": {
+            "coordinates": [
+            97.97509655951781,
+            19.30184916398018 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานร้อยเอ็ด",
+            "type": "ร้อยเอ็ด",
+            "level": 22
+          },
+          "geometry": {
+            "coordinates": [
+            103.77846091230982,
+            16.116665049759977
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติอู่ตะเภา",
+            "type": " ระยอง",
+            "level": 23
+          },
+          "geometry": {
+            "coordinates": [
+            100.99799799114273,
+            12.674528017162519 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานระนอง",
+            "type": "ระนอง",
+            "level": 24
+          },
+          "geometry": {
+            "coordinates": [
+            98.58711000668244,
+            9.773871953777567
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานเลย",
+            "type": "เลย",
+            "level": 25
+          },
+          "geometry": {
+            "coordinates": [
+            101.72669630662166,
+            17.44573396466774 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานลำปาง",
+            "type": "ลำปาง",
+            "level": 26
+          },
+          "geometry": {
+            "coordinates": [
+            99.5058590354615,
+            18.277817999986965 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานสกลนคร",
+            "type": "สกลนคร",
+            "level": 27
+          },
+          "geometry": {
+            "coordinates": [
+            104.11625606426065,
+            17.196897852413073 
+            ],
+            "type": "Point"
+          }
+        },
+
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานสงขลา",
+            "type": "สงขลา",
+            "level": 28
+          },
+          "geometry": {
+            "coordinates": [
+            100.60645696433834,
+            7.187077689052215 
+            ],
+            "type": "Point"
+          }
+        },
+
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยาน​สุรินทร",
+            "type": "สุรินทร์",
+            "level": 29
+          },
+          "geometry": {
+            "coordinates": [
+            103.4996582,
+            14.8694677 
+            ],
+            "type": "Point"
+          }
+        },
+
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยาน​สมุย",
+            "type": "สุราษฎร์ธานี",
+            "level": 30
+          },
+          "geometry": {
+            "coordinates": [
+            100.0631319,
+            9.5488928   
+            ],
+            "type": "Point"
+          }
+        },
+
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยาน​สุราษฎร์ธานี",
+            "type": "สุราษฎร์ธานี",
+            "level": 31
+          },
+          "geometry": {
+            "coordinates": [
+            99.143063,
+            9.134255 
+            ],
+            "type": "Point"
+          }
+        },
+
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยาน​สุโขทัย",
+            "type": "สุโขทัย",
+            "level": 32
+          },
+          "geometry": {
+            "coordinates": [
+            99.820550,
+            17.232831
+            ],
+            "type": "Point"
+          }
+        },
+
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยาน​อุดรธานี",
+            "type": "อุดรธานี",
+            "level": 33
+          },
+          "geometry": {
+            "coordinates": [
+            102.775523,
+            17.387138 
+            ],
+            "type": "Point"
+          }
+        },
+
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยาน​อุบลราชธานี​",
+            "type": "อุบลราชธานี",
+            "level": 34
+          },
+          "geometry": {
+            "coordinates": [
+            104.870720,
+            15.246908 
+            ],
+            "type": "Point"
+          }
+        },
+
+
+
+        // To add more locations, simply add more feature objects to the 'features' array.
+      ]
+         };
+    // Create a layer from the GeoJSON object and add it to the map
+    var tourLayer = L.geoJSON(Thailand, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng).bindPopup(feature.properties.name);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.on("mouseover", function () {
+          document
+            .getElementById(feature.properties.name)
+            .classList.add("w3-red");
+        });
+
+        layer.on("mouseout", function () {
+          document
+            .getElementById(feature.properties.name)
+            .classList.remove("w3-red");
+        });
+      },
+    }).addTo(map);
+
+    // Generate the table that will show the locations
+    var cont = "";
+    cont += "<table class='w3-table w3-striped'>";
+    cont += "<tr>";
+    cont += "<th>ท่าอากาศยาน</th>";
+    cont += "<th>จังหวัด</th>";
+    cont += "<th>อันดับ</th>";
+    cont += "</tr>";
+    for (let i in Thailand.features) {
+      cont += "<tr id=" + Thailand.features[i].properties.name + ">";
+      cont += "<td>" + Thailand.features[i].properties.name + "</td>";
+      cont += "<td>" + Thailand.features[i].properties.type + "</td>";
+      cont += "<td>" + Thailand.features[i].properties.level + "</td>";
+      cont += "</tr>";
+    }
+    cont += "</table>";
+    document.getElementById("content").innerHTML = cont;
+
+    // Group all overlay layers into a single object
+    var overlays = { "ท่าอากาศยาน": tourLayer };
+    //add layer control
+    L.control.layers(baseMaps, overlays).addTo(map);
+  </script>
+
+</body>
+</html>

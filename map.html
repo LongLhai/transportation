@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- This meta tag is for compatibility with IE -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- This meta tag makes your website look good on all devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primary</title>
+  <!-- This is the css file for the map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <!-- This is the css file for the template -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <style>
+    /* This is the css for the div that will hold the map */
+    #mapid {
+      height: 800px;
+    }
+  </style>
+  <link rel="stylesheet" href="/css2/style.css">
+</head>
+<header>
+</div>
+<nav>
+<ul>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/map.html">Primary</a></li>
+    <li><a href="/Secondary.html">Secondary</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+                
+</ul>
+</nav>
+<div>
+</header>
+<body>
+  <!-- This is the div that will hold the map and the content -->
+  <div class="w3-row">
+    <div id="mapid" class="w3-half"></div>
+    <div id="content" class="w3-half">
+      <table class="w3-table w3-striped">
+        <tr>
+          <th>ท่าอากาศยาน</th>
+          <th>จังหวัด</th>
+          <th>อันดับ</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Import the leaflet.js library -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <script>
+    // Initialize the map and set its view to our chosen geographical coordinates and a zoom level
+    var map = L.map("mapid").setView([13.736717, 100.523186], 8); 
+
+    // Add the OpenStreetMap layer to the map
+    var osm = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    ).addTo(map);
+    // Add the Google Satellite layer
+    var gsat = L.tileLayer(
+      "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+    );
+    // Add the OpenStreetMap HOT layer
+    var OpenStreetMap_HOT = L.tileLayer(
+      "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+    );
+    // Group all base layers into a single object
+    var baseMaps = {
+      OSM: osm,
+      GoogleSat: gsat,
+      streetmap: OpenStreetMap_HOT,
+    };
+
+    // Define our GeoJSON object with the features (locations)
+    var Thailand = {
+      "type": "FeatureCollection",
+      // The 'features' property of the GeoJSON object is an array of GeoJSON feature objects.
+      "features": [
+        // Here are the locations. You can change these coordinates to place your locations
+        // You can also change the type and level to categorize your locations.
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติสุวรรณภูมิ",
+            "type": "สมุทรปราการ",
+            "level": 1
+          },
+          "geometry": {
+            "coordinates": [
+            100.74992363872725,
+            13.691776041813023 
+            ],
+            "type": "Point"
+          }
+        },
+        // More locations...
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติดอนเมือง ",
+            "type": "กรุงเทพมหานคร",
+            "level": 2
+          },
+          "geometry": {
+            "coordinates": [
+            100.6068126665886,
+            13.914380744465085   
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติเชียงใหม่",
+            "type": "เชียงใหม่",
+            "level": 3
+          },
+          "geometry": {
+            "coordinates": [
+            98.96596666494767,
+            18.76746407153051 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติเชียงราย",
+            "type": "เชียงราย",
+            "level": 4
+          },
+          "geometry": {
+            "coordinates": [
+            99.8791494955253,
+            19.95427339670676  
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติภูเก็ต",
+            "type": "ภูเก็ต	",
+            "level": 5
+          },
+          "geometry": {
+            "coordinates": [
+            98.30536038019792,
+            8.106004309125316 
+            ],
+            "type": "Point"
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "name": "ท่าอากาศยานนานาชาติหาดใหญ่",
+            "type": "สงขลา	",
+            "level": 6
+          },
+          "geometry": {
+            "coordinates": [
+            100.39368939527186,
+            6.936718193063258 
+            ],
+            "type": "Point"
+          }
+        },
+        // To add more locations, simply add more feature objects to the 'features' array.
+      ]
+    };
+    // Create a layer from the GeoJSON object and add it to the map
+    var tourLayer = L.geoJSON(Thailand, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng).bindPopup(feature.properties.name);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.on("mouseover", function () {
+          document
+            .getElementById(feature.properties.name)
+            .classList.add("w3-red");
+        });
+
+        layer.on("mouseout", function () {
+          document
+            .getElementById(feature.properties.name)
+            .classList.remove("w3-red");
+        });
+      },
+    }).addTo(map);
+
+    // Generate the table that will show the locations
+    var cont = "";
+    cont += "<table class='w3-table w3-striped'>";
+    cont += "<tr>";
+    cont += "<th>ท่าอากาศยาน</th>";
+    cont += "<th>จังหวัด</th>";
+    cont += "<th>อันดับ</th>";
+    cont += "</tr>";
+    for (let i in Thailand.features) {
+      cont += "<tr id=" + Thailand.features[i].properties.name + ">";
+      cont += "<td>" + Thailand.features[i].properties.name + "</td>";
+      cont += "<td>" + Thailand.features[i].properties.type + "</td>";
+      cont += "<td>" + Thailand.features[i].properties.level + "</td>";
+      cont += "</tr>";
+    }
+    cont += "</table>";
+    document.getElementById("content").innerHTML = cont;
+
+    // Group all overlay layers into a single object
+    var overlays = { "ท่าอากาศยาน": tourLayer };
+    //add layer control
+    L.control.layers(baseMaps, overlays).addTo(map);
+  </script>
+
+</body>
+</html>
